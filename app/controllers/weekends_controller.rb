@@ -1,0 +1,2 @@
+class WeekendsController < ApplicationController
+end
