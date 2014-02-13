@@ -1,9 +1,9 @@
 class EventsController < ApplicationController
 
-before_validation :set_event_weekend_id
+#before_validates :set_event_weekend_id
 
 def index
-	@events = Event.all.order(:title)
+	@events = Weekend.find(params[:weekend_id]).events.order(:title)
 end
 
 def show
@@ -32,7 +32,7 @@ def update
 	@event = Event.find(params[:id])
 	if @event.update_attributes(event_params)
 		flash[:success] = 'Event updated!'
-		redirect_to weekend_path
+		redirect_to weekend_events_path
 	else
 		render 'edit'
 	end
@@ -41,7 +41,7 @@ end
 def destroy
 	@event = Event.find(params[:id]).destroy
 	flash[:success] = 'Event destroyed :('
-	redirect_to weekend_path
+	redirect_to weekend_events_path
 end
 
 private
