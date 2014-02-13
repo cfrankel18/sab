@@ -1,0 +1,7 @@
+<h1>Weekend of <%= @weekend.date %></h1>
+
+<div>
+<%= render @events %>
+</div>
+
+<%= link_to 'New Event', new_weekend_event_path(params[:id]) %>

@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |e| %>
+      <tr>
+        <td><%= e.title %> <%= e.day %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

@@ -1,2 +1,0 @@
-class SuggestionController < ApplicationController
-end

@@ -1,0 +1,24 @@
+<h1>Listing weekends</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @weekends.each do |wk| %>
+      <tr>
+        <td><%= wk.date %></td>
+        <td><%= link_to 'Show', wk %></td>
+        <td><%= link_to 'Edit', edit_weekend_path(wk) %></td>
+        <td><%= link_to 'Destroy', wk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Weekend', new_weekend_path %>

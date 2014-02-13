@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(version: 20140130224959) do
   end
 
   create_table "events", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "day"
+    t.string   "time"
+    t.integer  "weekend_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140130224959) do
   end
 
   create_table "weekends", force: true do |t|
+    t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

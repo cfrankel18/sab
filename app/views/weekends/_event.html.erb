@@ -1,0 +1,6 @@
+<div>
+	<%= event.title %> 
+	|<%= link_to 'edit', edit_weekend_event_path(event) %> 
+	| <%= link_to 'show', weekend_event_path(event) %> 
+	| <%= link_to 'delete', event, :method=>:delete, :data=>{:confirm=>'are you sure?'} %>
+</div>

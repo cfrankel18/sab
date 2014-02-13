@@ -1,0 +1,13 @@
+<%= form_for @weekend do |f| %>
+	<%= render 'shared/error_messages', :object=>f.object %>
+	
+	<div>
+		<%= f.label :date %>
+		<%= f.date_select :date %>
+	</div>
+	
+	<div>
+		<%= f.submit 'save weekend' %>
+	</div>
+	
+<% end %> 
