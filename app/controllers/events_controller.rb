@@ -15,7 +15,10 @@ def new
 end
 
 def create
-	@event = Event.new(event_params, :weekend_id => params[:id])
+	#@event = Event.new(event_params, :weekend_id => params[:id])
+	#debugger
+	weekend = Weekend.find(params[:weekend_id])
+	@event = weekend.events.new(event_params)
 	if @event.save
 		flash[:success] = 'Event saved!'
 		redirect_to weekend_events_path
@@ -49,7 +52,7 @@ private
 def event_params
 params
 	.require(:event)
-	.permit(:title, :description, :day, :time, :weekend_id)
+	.permit(:title, :description, :day, :time)
 end
 
 def set_weekend_event_id
