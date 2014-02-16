@@ -7,6 +7,8 @@ gem 'sass-rails',   '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 
+gem "bootstrap-sass", "3.1.1.0"
+gem 'turbolinks'
 
 
 # Bundle edge Rails instead:
@@ -16,6 +18,7 @@ gem 'sqlite3'
 
 group :development do
   gem 'annotate', '2.5.0'
+  gem 'rails_layout'
 end
 
 gem 'actionpack-action_caching', '~>1.0.0'
