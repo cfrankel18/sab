@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
 before_action :check_signed_in_user
-#before_action :check_correct_user, only:[:edit, :update, :destroy]
+before_action :check_is_member, only:[:new, :create, :edit, :update, :destroy]
 
 def index
 	@events = Weekend.find(params[:weekend_id]).events.order(:title)
@@ -68,6 +68,12 @@ end
   def check_correct_user
     @user = User.find(params[:id])
     redirect_to signin_path unless current_user?(@user)
+  end
+
+ def check_is_member
+	if !current_user.is_member
+		redirect_to root_path
+	end
   end
 
 end

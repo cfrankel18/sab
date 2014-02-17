@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
 
 before_action :check_signed_in_user
-#before_action :check_correct_user, only:[:edit, :update, :destroy]
+before_action :check_correct_user, only:[:edit, :update, :destroy]
+
 
 def new
 	@comment = Comment.new(user_id: current_user.id)
@@ -58,6 +59,12 @@ end
   def check_correct_user
     @user = User.find(params[:id])
     redirect_to signin_path unless current_user?(@user)
+  end
+
+ def check_is_member
+	if !current_user.is_member
+		redirect_to root_path
+	end
   end
 
 end

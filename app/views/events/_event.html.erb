@@ -1,4 +1,6 @@
 <div>
 	<%= link_to event.title, weekend_event_path(id:event.id, weekend_id:params[:id]) %> 
+	<% if current_user.is_member %>
 	<%= link_to '(Edit event)', edit_weekend_event_path(id:event.id, weekend_id:params[:id]) %> 
+	<% end %>
 </div>
