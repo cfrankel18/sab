@@ -1,5 +1,4 @@
 <div>
-	<%= event.title %>: 
-	<%= link_to 'Edit', edit_weekend_event_path(id:event.id, weekend_id:params[:id]) %> 
-	| <%= link_to 'Show', weekend_event_path(id:event.id, weekend_id:params[:id]) %> 
+	<%= link_to event.title, weekend_event_path(id:event.id, weekend_id:params[:id]) %> 
+	<%= link_to '(Edit event)', edit_weekend_event_path(id:event.id, weekend_id:params[:id]) %> 
 </div>

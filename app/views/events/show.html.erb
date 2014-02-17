@@ -1,3 +1,13 @@
 <h1><%= @event.title %></h1>
-<h4><%= @event.day %> <%= @event.time %></h4>
+<h5>Rated <%= @event.ratings.collect(&:value).sum.to_f/@event.ratings.length if @event.ratings.length > 0 %> stars</h5>
+<%= link_to 'Rate this event', new_weekend_event_rating_path(event_id:@event.id) %>
+<%= link_to '[Delete this event]', weekend_event_path(id:@event.id, weekend_id:@event.weekend_id), :method=>:delete, :data=>{:confirm=>'Are you sure?'} %>
+<h4><%= @event.day %>: <%= @event.time %></h4>
 <p><%= @event.description %></p>
+
+<br />
+
+<h5>Comments:</h5>
+
+<%= render @event.comments %>
+<%= link_to 'New Comment', new_weekend_event_comment_path(event_id:@event.id) %>

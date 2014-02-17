@@ -21,7 +21,7 @@ def create
 	@event = weekend.events.new(event_params)
 	if @event.save
 		flash[:success] = 'Event saved!'
-		redirect_to weekend_events_path
+		redirect_to weekend_path(id:weekend)
 	else
 		render 'new'
 	end
@@ -42,9 +42,11 @@ def update
 end
 
 def destroy
-	@event = Event.find(params[:id]).destroy
+	@event = Event.find(params[:id])
+	wi = @event.weekend_id
+	@event.destroy
 	flash[:success] = 'Event destroyed :('
-	redirect_to weekend_events_path
+	redirect_to weekend_path(id:wi)
 end
 
 private

@@ -3,10 +3,11 @@ Sab::Application.routes.draw do
 resources :users
 
 resources :weekends do
-	resources :events
+	resources :events do
+		resources :comments
+		resources :ratings
+	end
 end
-
-#resources :events
 
 resources :sessions, only:[:new, :create, :destroy]
   match '/signin',  to: 'sessions#new',         via: 'get'

@@ -1,5 +1,5 @@
 class Rating < ActiveRecord::Base
-  attr_accessible :rating, :user_id
+  attr_accessible :value, :user_id, :event_id
 
   belongs_to :event
 end

@@ -14,6 +14,9 @@
 ActiveRecord::Schema.define(version: 20140130224959) do
 
   create_table "comments", force: true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -29,6 +32,9 @@ ActiveRecord::Schema.define(version: 20140130224959) do
   end
 
   create_table "ratings", force: true do |t|
+    t.integer  "value"
+    t.integer  "user_id"
+    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
