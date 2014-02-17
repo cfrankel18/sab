@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
 		t.string	:password
 		t.string	:password_confirmation
 		t.string	:password_digest
+		t.boolean	:is_member
       t.timestamps
     end
   end

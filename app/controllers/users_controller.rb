@@ -2,13 +2,14 @@ class UsersController < ApplicationController
 
   before_action :check_signed_in_user, only:[:edit, :update, :destroy]
   before_action :check_correct_user, only:[:edit, :update, :destroy]
+  before_action :check_is_member, only:[:edit, :update, :destroy]
 
   def index
 	@users = User.all
   end
 
   def new
-	@user = User.new
+	@user = User.new(is_member: false)
   end
 
   def edit
@@ -51,7 +52,7 @@ class UsersController < ApplicationController
   def user_params
     params
       .require(:user)
-      .permit(:first, :last, :email, :password, :password_confirmation)
+      .permit(:first, :last, :email, :password, :password_confirmation, :is_member)
   end
 
   def check_signed_in_user
@@ -64,6 +65,12 @@ class UsersController < ApplicationController
   def check_correct_user
     @user = User.find(params[:id])
     redirect_to signin_path unless current_user?(@user)
+  end
+
+  def check_is_member
+	if !current_user.is_member
+		redirect_to root_path
+	end
   end
 
 end

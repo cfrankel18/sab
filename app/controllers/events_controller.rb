@@ -36,7 +36,7 @@ def update
 	@event = Event.find(params[:id])
 	if @event.update_attributes(event_params)
 		flash[:notice] = 'Event updated.'
-		redirect_to weekend_events_path
+		redirect_to weekend_path(id:@event.weekend_id)
 	else
 		render 'edit'
 	end
@@ -55,11 +55,7 @@ private
 def event_params
 params
 	.require(:event)
-	.permit(:title, :description, :day, :time)
-end
-
-def set_weekend_event_id
-	self.weekend_id = params[:id]
+	.permit(:title, :description, :day, :time, :id)
 end
 
   def check_signed_in_user

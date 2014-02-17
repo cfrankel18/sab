@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140217033649) do
     t.string   "password"
     t.string   "password_confirmation"
     t.string   "password_digest"
+    t.boolean  "is_member"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"

@@ -1,5 +1,8 @@
 <%= form_for @user do |f| %>
 	<%= render 'shared/error_messages', :object=>f.object %>
+	
+	<%= f.check_box :is_member, :value => @user.is_member %>
+	
 	<div>
 		<%= f.label :first %>
 		<%= f.text_field :first %>
