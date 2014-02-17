@@ -16,7 +16,7 @@ end
 def create
 	@weekend = Weekend.new(weekend_params)
     if @weekend.save
-      flash[:success] = "weekend created"
+      flash[:notice] = "Weekend created."
       redirect_to weekends_path
     else
       render 'new'
@@ -30,7 +30,7 @@ end
 def update
 	@weekend = Weekend.find(params[:id])
 	    if @weekend.update_attributes(weekend_params)
-	      flash[:success] = 'weekend updated'
+	      flash[:notice] = 'Weekend updated.'
 	      redirect_to weekend_path
 	    else
 	      render 'edit'
@@ -39,7 +39,7 @@ end
 
 def destroy
 	Weekend.find(params[:id]).destroy
-	    flash[:success] = 'user deleted'
+	    flash[:notice] = 'Weekend deleted.'
 	    redirect_to weekends_path
 end
 

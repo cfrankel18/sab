@@ -20,7 +20,7 @@ def create
 	weekend = Weekend.find(params[:weekend_id])
 	@event = weekend.events.new(event_params)
 	if @event.save
-		flash[:success] = 'Event saved!'
+		flash[:notice] = 'Event saved.'
 		redirect_to weekend_path(id:weekend)
 	else
 		render 'new'
@@ -34,7 +34,7 @@ end
 def update
 	@event = Event.find(params[:id])
 	if @event.update_attributes(event_params)
-		flash[:success] = 'Event updated!'
+		flash[:notice] = 'Event updated.'
 		redirect_to weekend_events_path
 	else
 		render 'edit'
@@ -45,7 +45,7 @@ def destroy
 	@event = Event.find(params[:id])
 	wi = @event.weekend_id
 	@event.destroy
-	flash[:success] = 'Event destroyed :('
+	flash[:notice] = 'Event destroyed.'
 	redirect_to weekend_path(id:wi)
 end
 

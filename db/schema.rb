@@ -40,6 +40,9 @@ ActiveRecord::Schema.define(version: 20140130224959) do
   end
 
   create_table "suggestions", force: true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

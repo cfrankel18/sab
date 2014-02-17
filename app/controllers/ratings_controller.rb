@@ -8,7 +8,7 @@ def create
 	event = Event.find(params[:event_id])
 	@rating = event.ratings.new(rating_params)
 	if @rating.save
-		flash[:success] = 'Rating saved!'
+		flash[:notice] = 'Event rated.'
 		redirect_to weekend_event_path(id:event)
 	else
 		render 'new'
@@ -22,7 +22,7 @@ end
 def update
 	@rating = Rating.find(params[:id])
 	if @rating.update_attributes(rating_params)
-		flash[:success] = 'Rating updated!'
+		flash[:notice] = 'Rating updated.'
 		redirect_to weekend_event_path(id:@rating.event_id)
 	else
 		render 'edit'
@@ -33,7 +33,7 @@ def destroy
 	@rating = Rating.find(params[:id])
 	ei = @rating.event_id
 	@rating.destroy
-	flash[:success] = 'Rating destroyed :('
+	flash[:notice] = 'Rating destroyed.'
 	redirect_to weekend_event_path(id:ei)
 end
 

@@ -8,7 +8,7 @@ def create
 	event = Event.find(params[:event_id])
 	@comment = event.comments.new(comment_params)
 	if @comment.save
-		flash[:success] = 'Comment saved!'
+		flash[:notice] = 'Comment saved.'
 		redirect_to weekend_event_path(id:event)
 	else
 		render 'new'
@@ -22,7 +22,7 @@ end
 def update
 	@comment = Comment.find(params[:id])
 	if @comment.update_attributes(comment_params)
-		flash[:success] = 'Comment updated!'
+		flash[:notice] = 'Comment updated.'
 		redirect_to weekend_event_path(id:@comment.event_id)
 	else
 		render 'edit'
@@ -33,7 +33,7 @@ def destroy
 	@comment = Comment.find(params[:id])
 	ei = @comment.event_id
 	@comment.destroy
-	flash[:success] = 'Comment destroyed :('
+	flash[:notice] = 'Comment destroyed.'
 	redirect_to weekend_event_path(id:ei)
 end
 
