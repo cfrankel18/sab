@@ -22,8 +22,9 @@ class UsersController < ApplicationController
   def create
 	@user = User.new(user_params)
 	    if @user.save
-	      flash[:notice] = "User created."
-	      redirect_to users_path
+		  sign_in @user
+	      flash[:notice] = "Account created! Welcome!"
+	      redirect_to @user
 	    else
 	      render 'new'
 	    end
@@ -52,10 +53,10 @@ class UsersController < ApplicationController
       .require(:user)
       .permit(:first, :last, :email, :password, :password_confirmation)
   end
-  
+
   def check_signed_in_user
     unless signed_in?
-      flash[:warning] = 'please sign in first'
+      flash[:alert] = 'Please sign in first.'
       redirect_to signin_url
     end
   end

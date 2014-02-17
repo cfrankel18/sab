@@ -1,7 +1,10 @@
 class CommentsController < ApplicationController
 
+before_action :check_signed_in_user
+#before_action :check_correct_user, only:[:edit, :update, :destroy]
+
 def new
-	@comment = Comment.new
+	@comment = Comment.new(user_id: current_user.id)
 end
 
 def create
@@ -42,7 +45,19 @@ private
 def comment_params
 params
 	.require(:comment)
-	.permit(:content)
+	.permit(:content, :user_id)
 end
+
+  def check_signed_in_user
+    unless signed_in?
+      flash[:alert] = 'Please sign in first.'
+      redirect_to signin_url
+    end
+  end
+  
+  def check_correct_user
+    @user = User.find(params[:id])
+    redirect_to signin_path unless current_user?(@user)
+  end
 
 end

@@ -1,5 +1,8 @@
 class SuggestionsController < ApplicationController
 
+before_action :check_signed_in_user
+#before_action :check_correct_user, only:[:edit, :update, :destroy]
+
 def index
 	@suggestions = Suggestion.all
 end
@@ -48,6 +51,18 @@ def suggestion_params
     params
 		.require(:suggestion)
 		.permit(:title, :content)
-  end
+end
+
+def check_signed_in_user
+    unless signed_in?
+      flash[:alert] = 'Please sign in first.'
+      redirect_to signin_url
+    end
+end
+  
+def check_correct_user
+    @user = User.find(params[:id])
+    redirect_to signin_path unless current_user?(@user)
+end
 
 end
