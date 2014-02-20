@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_action :check_signed_in_user, only:[:edit, :update, :destroy]
   before_action :check_correct_user, only:[:edit, :update, :destroy]
-  before_action :check_is_member, only:[:edit, :update, :destroy]
+  before_action :check_is_member, only:[:show, :edit, :update, :destroy]
 
   def index
 	@users = User.all

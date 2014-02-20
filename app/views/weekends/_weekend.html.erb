@@ -1,5 +1,7 @@
 <div>
-	<%= link_to weekend.date, weekend_path(id:weekend.id) %>: 
+	<%= link_to weekend.date, weekend_path(id:weekend.id) %> 
+	<% if current_user.is_member %>
 	<%= link_to 'Edit', edit_weekend_path(id:weekend.id) %> 
 	| <%= link_to 'Delete', weekend, :method=>:delete, :data=>{:confirm=>'Are you sure?'} %>
+	<% end %>
 </div>

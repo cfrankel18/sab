@@ -2,6 +2,7 @@ class RatingsController < ApplicationController
 
 before_action :check_signed_in_user
 #before_action :check_correct_user, only:[:edit, :update, :destroy]
+before_action :check_unique_rating, only:[:new, :create]
 
 def new
 	@rating = Rating.new(user_id: current_user.id)
@@ -59,5 +60,14 @@ end
     @user = User.find(params[:id])
     redirect_to signin_path unless current_user?(@user)
   end
+
+  def check_unique_rating
+  	ei = params[:event_id]
+  	wi = params[:weekend_id]
+  	if(Rating.where(user_id: current_user.id).take != nil)
+  		#flash[:alert] = 'You\'ve already rated this event'
+  		redirect_to edit_weekend_event_rating_path(weekend_id: wi, event_id: ei, id:Rating.where(user_id: current_user.id).take.id)
+  	end
+  end	
 
 end
