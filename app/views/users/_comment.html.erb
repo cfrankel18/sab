@@ -1,0 +1,9 @@
+<div>
+	<% @user.comments.each do |c| %>
+	<li>
+		<%= "Event ID: " %> <%= c.event_id %>
+		| <%= c.content %>
+		( <%# need to add a lint_to 'Delete"... don't know the correct path and params %> )
+	</li>
+	<% end %>
+</div>
