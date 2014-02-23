@@ -46,7 +46,7 @@ private
 def comment_params
 params
 	.require(:comment)
-	.permit(:content, :user_id)
+	.permit(:content, :user_id, :event_id)
 end
 
   def check_signed_in_user
@@ -58,7 +58,7 @@ end
   
   def check_correct_user
     @user = User.find(params[:id])
-    redirect_to signin_path unless current_user?(@user) || current_user?(:is_member)
+    redirect_to signin_path unless current_user?(@user) || current_user.is_member
   end
 
  def check_is_member

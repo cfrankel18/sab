@@ -64,8 +64,8 @@ class UsersController < ApplicationController
   
   def check_correct_user
     @user = User.find(params[:id])
-    redirect_to signin_path unless current_user?(@user)
-  end
+    redirect_to signin_path unless current_user?(@user) || current_user.is_member
+      end
 
   def check_is_member
 	if !current_user.is_member

@@ -1,3 +1,8 @@
 <div>
-	<li><%= User.find(comment.user_id).first %>: <%= comment.content %> <%# need to add a lint_to 'Delete"... don't know the correct path and params %></li>
+	<li><%= User.find(comment.user_id).first %>: <%= comment.content %> 
+		<% if current_user.is_member %> 
+			<%= link_to 'Edit', edit_weekend_event_comment_path(id: comment.id, event_id:params[:id]), :class => "btn" %>
+		  | <%= link_to 'Delete', weekend_event_comment_path(id: comment.id, event_id:params[:id]), :method => :delete, :data=>{:confirm=>'Are you sure?'}, :class => "btn" %>
+		<% end %>
+	</li>
 </div>

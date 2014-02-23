@@ -2,6 +2,6 @@
 	<%= link_to event.title, weekend_event_path(id:event.id, weekend_id:params[:id]), :class => "btn btn-sm btn-primary"%> 
 	<% if current_user.is_member %>
 	<%= link_to 'Edit', edit_weekend_event_path(id:event.id, weekend_id:params[:id]), :class => "btn"%> 
-	| <%= link_to 'Delete', weekend_event_path(id:event.id, weekend_id:params[:id]), :class => "btn" %>
+	| <%= link_to 'Delete', weekend_event_path(id:event.id, weekend_id:params[:id]), :method => :destroy, :class => "btn" %>
 	<% end %>
 </div>
