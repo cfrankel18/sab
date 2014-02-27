@@ -3,7 +3,7 @@ class CreateRoles < ActiveRecord::Migration
     create_table :roles do |t|
 		t.boolean :will_setup
 		t.boolean :will_cleanup
-		t.integer :user_id
+		t.integer :duser_id
 		t.integer :event_id
       t.timestamps
     end

@@ -1,6 +1,6 @@
 <div>
-	<li><%= User.find(comment.user_id).first %>: <%= comment.content %> 
-		<% if current_user.is_member || comment.user_id == current_user.id %> 
+	<li><%= Duser.find(comment.duser_id).first_name %>: <%= comment.content %> 
+		<% if current_duser.is_member || comment.duser_id == current_duser.id %> 
 			<%= link_to 'Edit', edit_weekend_event_comment_path(id: comment.id, event_id:params[:id]), :class => "btn" %>
 		  | <%= link_to 'Delete', weekend_event_comment_path(id: comment.id, event_id:params[:id]), :method => :delete, :data=>{:confirm=>'Are you sure?'}, :class => "btn" %>
 		<% end %>

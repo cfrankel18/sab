@@ -1,7 +1,7 @@
 <div>
 	<%= suggestion.title %>: 
 	<%= link_to 'Show', suggestion_path(id:suggestion.id), :class => "btn btn-success"%> 
-	<% if current_user.is_member %> 
+	<% if current_duser.is_member %> 
 	| <%= link_to 'Edit', edit_suggestion_path(id:suggestion.id), :class => "btn"%>
 	| <%= link_to 'Delete', suggestion, :method=>:delete, :data=>{:confirm=>'Are you sure?'}, :class => "btn" %>
 	<% end %>

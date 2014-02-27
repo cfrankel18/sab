@@ -1,0 +1,10 @@
+<div>
+	<%= duser.first_name %> <%= duser.last_name %> (<%= duser.email %>): 
+	<%= link_to 'Delete', duser_delete_path(id:duser.id), :method=>:delete, :data=>{:confirm=>'Are you sure?'}, :class => "btn" %>
+	<% if duser.is_member %>
+	<% message = "Remove Board Member Status" %>
+	<% else %>
+	<% message = "Make Board Member" %>
+	<% end %>
+	| <%= link_to message, duser_make_member_path(duser_id:duser.id), :class => "btn btn-info", :method => 'patch' %>
+</div>

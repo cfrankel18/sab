@@ -1,9 +1,10 @@
+<% provide :title, 'Edit Rating' %>
 <h1>Edit your rating</h1>
 
 <%= form_for @rating, url: weekend_event_rating_path(weekend_id: Event.find(@rating.event_id).weekend_id, event_id: @rating.event_id, id:@rating.id) do |f| %>
 	<%= render 'shared/error_messages', :object=>f.object %>
 	
-	<%= f.hidden_field :user_id, :value => @rating.user_id %>
+	<%= f.hidden_field :duser_id, :value => @rating.duser_id %>
 	
 	<div>
 		<%= f.label :value, '1', value: 1 %>

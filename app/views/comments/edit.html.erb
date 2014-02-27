@@ -1,8 +1,9 @@
+<% provide :title, 'Edit Comment' %>
 <h1>Edit Comment</h1>
 <%= form_for @comment, url: weekend_event_comment_path(id: @comment.id) do |f| %>
 	<%= render 'shared/error_messages', :object=>f.object %>
 	
-	<%= f.hidden_field :user_id, :value => @comment.user_id %>
+	<%= f.hidden_field :duser_id, :value => @comment.duser_id %>
 	
 	<div>
 		<%= f.label :content %>

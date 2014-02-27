@@ -1,24 +1,25 @@
 Sab::Application.routes.draw do
 
-resources :users do
-	patch :make_member
-end
+  devise_for :dusers
+  devise_scope :dusers do
+	patch '/dusers/:duser_id/make_member' => 'dusers#make_member', :as => :duser_make_member
+	delete '/dusers/:id' => 'dusers#destroy', :as => :duser_delete
+  end
 
-resources :weekends do
-	resources :events do
-		resources :comments
-		resources :ratings
-		resources :roles
-	end
-end
+  match '/dusers', to: 'dusers#index', via: 'get'
 
-resources :suggestions
 
-resources :sessions, only:[:new, :create, :destroy]
-  match '/signin',  to: 'sessions#new',         via: 'get'
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
+  resources :weekends do
+	  resources :events do
+		  resources :comments
+		  resources :ratings
+		  resources :roles
+	  end
+  end
 
-root 'weekends#index'
+  resources :suggestions
+
+  root 'weekends#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

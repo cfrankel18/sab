@@ -5,7 +5,7 @@ class RolesController < ApplicationController
   before_action :check_unique_role, only:[:new]
 
 def new
-	@role = Role.new(user_id: current_user.id)
+	@role = Role.new(duser_id: current_duser.id)
 end
 
 def create
@@ -47,18 +47,18 @@ private
 def role_params
 params
 	.require(:role)
-	.permit(:will_setup, :will_cleanup, :user_id, :event_id)
+	.permit(:will_setup, :will_cleanup, :duser_id, :event_id)
 end
 
 def check_signed_in_user
-  unless signed_in?
+  unless duser_signed_in?
     flash[:alert] = 'Please sign in first.'
     redirect_to signin_url
   end
 end
 
 def check_is_member
-  if !current_user.is_member
+  if !current_duser.is_member
     redirect_to root_path
   end
 end
@@ -66,8 +66,8 @@ end
 def check_unique_role
 	wi = params[:weekend_id]
 	ei = params[:event_id]
-	if (Role.where(event_id: ei, user_id: current_user.id).take != nil)
-		redirect_to edit_weekend_event_role_path(weekend_id: wi, event_id: ei, id: 		Role.where(event_id: ei, user_id: current_user.id).take.id)
+	if (Role.where(event_id: ei, duser_id: current_duser.id).take != nil)
+		redirect_to edit_weekend_event_role_path(weekend_id: wi, event_id: ei, id: 		Role.where(event_id: ei, duser_id: current_duser.id).take.id)
 	end
 end
 

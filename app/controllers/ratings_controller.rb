@@ -4,7 +4,7 @@ before_action :check_signed_in_user
 before_action :check_unique_rating, only:[:new]
 
 def new
-	@rating = Rating.new(user_id: current_user.id)
+	@rating = Rating.new(duser_id: current_duser.id)
 end
 
 def create
@@ -45,11 +45,11 @@ private
 def rating_params
 params
 	.require(:rating)
-	.permit(:value, :user_id)
+	.permit(:value, :duser_id)
 end
 
   def check_signed_in_user
-    unless signed_in?
+    unless duser_signed_in?
       flash[:alert] = 'Please sign in first.'
       redirect_to signin_url
     end
@@ -58,9 +58,9 @@ end
   def check_unique_rating
   	ei = params[:event_id]
   	wi = params[:weekend_id]
-  	if(Rating.where(event_id: ei, user_id: current_user.id).take != nil)
+  	if(Rating.where(event_id: ei, duser_id: current_duser.id).take != nil)
   		#flash[:alert] = 'You\'ve already rated this event'
-  		redirect_to edit_weekend_event_rating_path(weekend_id: wi, event_id: ei, id:Rating.where(event_id: ei, user_id: current_user.id).take.id)
+  		redirect_to edit_weekend_event_rating_path(weekend_id: wi, event_id: ei, id:Rating.where(event_id: ei, duser_id: current_duser.id).take.id)
   	end
   end	
 

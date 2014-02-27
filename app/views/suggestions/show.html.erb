@@ -1,2 +1,5 @@
+<% provide :title, @suggestion.title %>
+
 <h1><%= @suggestion.title %></h1>
+<h6>Suggested by: <%= Duser.find(@suggestion.duser_id).first_name %> <%= Duser.find(@suggestion.duser_id).last_name %></h6>
 <p><%= @suggestion.content %></p>

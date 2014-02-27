@@ -3,7 +3,7 @@ class CreateSuggestions < ActiveRecord::Migration
     create_table :suggestions do |t|
 		t.string	:title
 		t.string	:content
-		t.integer	:user_id
+		t.integer	:duser_id
       t.timestamps
     end
   end

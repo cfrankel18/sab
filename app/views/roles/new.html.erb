@@ -1,8 +1,10 @@
+<% provide :title, 'Help Out!' %>
+
 <h1>Sign up to help out.</h1>
 <%= form_for @role, url: weekend_event_roles_path do |f| %>
 	<%= render 'shared/error_messages', :object=>f.object %>
 	
-	<%= f.hidden_field :user_id, :value => @role.user_id %>
+	<%= f.hidden_field :duser_id, :value => @role.duser_id %>
 	
 	<div>
 		<%= f.label :will_setup %>

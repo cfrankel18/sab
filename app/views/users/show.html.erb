@@ -1,8 +1,0 @@
-<h1><%= @user.first %> <%= @user.last %> (<%= @user.email %>) </h1>
-<h4><% if @user.is_member %> <%= "Board Member" %> <% else %> <%= "Student or Faculty" %> <% end %> </h4>
-
-
-<div>
-	<h3>Comments</h3>
-	<%= render 'comment' %>
-</div>

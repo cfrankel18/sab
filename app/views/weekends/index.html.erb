@@ -1,9 +1,11 @@
+<% provide :title, 'Weekender Online' %>
+
 <h1 style="text-align:center">Listing Weekends</h1>
 
 <%= render @weekends %>
 
 <br>
 
-<% if current_user.is_member %>
+<% if current_duser.is_member %>
 <%= link_to 'New Weekend', new_weekend_path, :class => "btn" %>
 <% end %>

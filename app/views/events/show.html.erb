@@ -1,11 +1,13 @@
+<% provide :title, @event.title %>
+
 <div style="padding-top:10px"><% wn = Weekend.find(@event.weekend_id).date.to_s %>« <%= link_to 'All Weekends', root_path %> « <%= link_to wn, weekend_path(@event.weekend_id) %>
 
 <h1><%= @event.title %></h1>
-<% if current_user.is_member %>
+<% if current_duser.is_member %>
 <%= link_to 'Delete this event', weekend_event_path(id:@event.id, weekend_id:@event.weekend_id), :method=>:delete, :data=>{:confirm=>'Are you sure?'}, :class => "btn btn-danger btn-xs" %>
 <% end %>
 
-<% if current_user.is_member %>
+<% if current_duser.is_member %>
 <div>
 <h6>Who's helping out:</h6>
 <%= render @event.roles %>

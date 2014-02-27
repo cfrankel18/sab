@@ -10,6 +10,7 @@ gem 'uglifier', '>= 1.3.0'
 gem "bootstrap-sass", "3.1.1.0"
 gem 'turbolinks'
 
+gem 'devise'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

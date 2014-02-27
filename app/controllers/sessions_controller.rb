@@ -1,22 +1,15 @@
 class SessionsController < ApplicationController
 
 def new
+  @user = Duser.new(is_member: false)
 end
   
 def create
-  user= User.find_by(email: params[:email].downcase)
-  if user and user.authenticate(params[:password])
-    sign_in(user)
-    redirect_to root_path
-  else
-    flash.now[:alert] = 'Invalid email/password combination.'
-    render 'new'
-  end
+  super
 end
   
 def destroy
-  sign_out
-  redirect_to root_url
+  super
 end
 
 end

@@ -1,3 +1,5 @@
+<% provide :title, @weekend.date.to_s %>
+
 <div style="padding-top:10px"><%= link_to '« All Weekends', root_path %></div>
 <h1>Weekend of <%= @weekend.date %></h1>
 
@@ -7,6 +9,6 @@
 
 <br />
 
-<% if current_user.is_member %>
+<% if current_duser.is_member %>
 <%= link_to 'New Event', new_weekend_event_path(params[:id]), :class => "btn"%>
 <% end %>

@@ -59,7 +59,7 @@ params
 end
 
   def check_signed_in_user
-    unless signed_in?
+    unless duser_signed_in?
       flash[:alert] = 'Please sign in first.'
       redirect_to signin_url
     end
@@ -71,7 +71,7 @@ end
   end
 
  def check_is_member
-	if !current_user.is_member
+	if !current_duser.is_member
 		redirect_to root_path
 	end
   end

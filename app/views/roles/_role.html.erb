@@ -1,12 +1,12 @@
 <% if role.will_setup || role.will_cleanup %>
-<div><%= current_user.first + " " + current_user.last %>:
+<div><%= Duser.find(role.duser_id).first_name %> <%= Duser.find(role.duser_id).last_name %>:
 <% if role.will_setup %>
 	Setting up.
 <% end %>
 <% if role.will_cleanup %>
 	Cleaning up.
 <% end %>
-<% if role.user_id == current_user.id %>
+<% if role.duser_id == current_duser.id %>
 	<%= link_to "Edit", edit_weekend_event_role_path(weekend_id: Event.find(role.event_id).weekend_id, event_id: role.event_id, id: role.id) %>
 	<%= link_to "Delete", weekend_event_role_path(weekend_id: Event.find(role.event_id).weekend_id, event_id: role.event_id, id: role.id), :method => :delete, :data=>{:confirm=>'Are you sure?'} %>
 <% end %>
