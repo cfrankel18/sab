@@ -3,8 +3,12 @@ class Event < ActiveRecord::Base
 
   has_many :comments
   has_many :ratings
+  has_many :roles
   belongs_to :weekend
   
-  validates :weekend_id, :presence=>true
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :day, presence: true
+  validates :time, presence: true
   
 end

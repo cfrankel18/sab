@@ -1,0 +1,14 @@
+<% if role.will_setup || role.will_cleanup %>
+<div><%= current_user.first + " " + current_user.last %>:
+<% if role.will_setup %>
+	Setting up.
+<% end %>
+<% if role.will_cleanup %>
+	Cleaning up.
+<% end %>
+<% if role.user_id == current_user.id %>
+	<%= link_to "Edit", edit_weekend_event_role_path(weekend_id: Event.find(role.event_id).weekend_id, event_id: role.event_id, id: role.id) %>
+	<%= link_to "Delete", weekend_event_role_path(weekend_id: Event.find(role.event_id).weekend_id, event_id: role.event_id, id: role.id), :method => :delete, :data=>{:confirm=>'Are you sure?'} %>
+<% end %>
+</div>
+<% end %>

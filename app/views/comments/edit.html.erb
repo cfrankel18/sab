@@ -1,2 +1,16 @@
 <h1>Edit Comment</h1>
-<%= render 'form' %>
+<%= form_for @comment, url: weekend_event_comment_path(id: @comment.id) do |f| %>
+	<%= render 'shared/error_messages', :object=>f.object %>
+	
+	<%= f.hidden_field :user_id, :value => @comment.user_id %>
+	
+	<div>
+		<%= f.label :content %>
+		<%= f.text_area :content, size: "30x4"%>
+	</div>
+	
+	<div>
+		<%= f.submit 'Save' %>
+	</div>
+	
+<% end %> 

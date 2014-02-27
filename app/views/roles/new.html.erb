@@ -1,0 +1,20 @@
+<h1>Sign up to help out.</h1>
+<%= form_for @role, url: weekend_event_roles_path do |f| %>
+	<%= render 'shared/error_messages', :object=>f.object %>
+	
+	<%= f.hidden_field :user_id, :value => @role.user_id %>
+	
+	<div>
+		<%= f.label :will_setup %>
+		<%= f.check_box :will_setup %>
+	</div>
+	
+	<div>
+		<%= f.label :will_cleanup %>
+		<%= f.check_box :will_cleanup %>
+	<div>
+	
+	<div>
+		<%= f.submit 'Save' %>
+	</div>
+<% end %> 

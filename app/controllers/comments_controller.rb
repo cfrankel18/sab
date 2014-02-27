@@ -57,7 +57,7 @@ end
   end
   
   def check_correct_user
-    @user = User.find(params[:id])
+    @user = User.find(Comment.find(params[:id]).user_id)
     redirect_to signin_path unless current_user?(@user) || current_user.is_member
   end
 

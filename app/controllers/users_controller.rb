@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_action :check_signed_in_user, only:[:edit, :update, :destroy]
   before_action :check_correct_user, only:[:edit, :update, :destroy]
-  before_action :check_is_member, only:[:show, :edit, :update, :destroy]
+  before_action :check_is_member, only:[:index, :show, :edit, :update, :destroy]
 
   def index
 	@users = User.all
@@ -45,6 +45,14 @@ class UsersController < ApplicationController
 	User.find(params[:id]).destroy
 	    flash[:notice] = 'User deleted.'
 	    redirect_to users_path
+  end
+
+  def make_member
+	@user = User.find(params[:user_id])
+	im = !@user.is_member
+	@user.update_attribute(:is_member, im)
+	flash[:notice] = "Board member status updated."
+	redirect_to users_path
   end
 
   private

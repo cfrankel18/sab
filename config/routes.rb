@@ -1,11 +1,14 @@
 Sab::Application.routes.draw do
 
-resources :users
+resources :users do
+	patch :make_member
+end
 
 resources :weekends do
 	resources :events do
 		resources :comments
 		resources :ratings
+		resources :roles
 	end
 end
 

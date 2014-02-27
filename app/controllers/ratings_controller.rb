@@ -1,8 +1,7 @@
 class RatingsController < ApplicationController
 
 before_action :check_signed_in_user
-#before_action :check_correct_user, only:[:edit, :update, :destroy]
-before_action :check_unique_rating, only:[:new, :create]
+before_action :check_unique_rating, only:[:new]
 
 def new
 	@rating = Rating.new(user_id: current_user.id)
@@ -13,7 +12,7 @@ def create
 	@rating = event.ratings.new(rating_params)
 	if @rating.save
 		flash[:notice] = 'Event rated.'
-		redirect_to weekend_event_path(id:event)
+		redirect_to weekend_event_path(weekend_id: Event.find(event.id).weekend_id, id: event.id)
 	else
 		render 'new'
 	end
@@ -27,7 +26,7 @@ def update
 	@rating = Rating.find(params[:id])
 	if @rating.update_attributes(rating_params)
 		flash[:notice] = 'Rating updated.'
-		redirect_to weekend_event_path(id:@rating.event_id)
+		redirect_to weekend_event_path(weekend_id:Event.find(@rating.event_id).weekend_id, id:@rating.event_id)
 	else
 		render 'edit'
 	end
@@ -38,7 +37,7 @@ def destroy
 	ei = @rating.event_id
 	@rating.destroy
 	flash[:notice] = 'Rating destroyed.'
-	redirect_to weekend_event_path(id:ei)
+	redirect_to weekend_event_path(weekend_id: Event.find(ei).weekend_id, id: ei)
 end
 
 private
@@ -55,18 +54,13 @@ end
       redirect_to signin_url
     end
   end
-  
-  def check_correct_user
-    @user = User.find(params[:id])
-    redirect_to signin_path unless current_user?(@user)
-  end
 
   def check_unique_rating
   	ei = params[:event_id]
   	wi = params[:weekend_id]
-  	if(Rating.where(user_id: current_user.id).take != nil)
+  	if(Rating.where(event_id: ei, user_id: current_user.id).take != nil)
   		#flash[:alert] = 'You\'ve already rated this event'
-  		redirect_to edit_weekend_event_rating_path(weekend_id: wi, event_id: ei, id:Rating.where(user_id: current_user.id).take.id)
+  		redirect_to edit_weekend_event_rating_path(weekend_id: wi, event_id: ei, id:Rating.where(event_id: ei, user_id: current_user.id).take.id)
   	end
   end	
 

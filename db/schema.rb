@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217033649) do
+ActiveRecord::Schema.define(version: 20140225175127) do
 
   create_table "comments", force: true do |t|
     t.string   "content"
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 20140217033649) do
 
   create_table "ratings", force: true do |t|
     t.integer  "value"
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", force: true do |t|
+    t.boolean  "will_setup"
+    t.boolean  "will_cleanup"
     t.integer  "user_id"
     t.integer  "event_id"
     t.datetime "created_at"
