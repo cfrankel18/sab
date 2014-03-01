@@ -52,7 +52,7 @@ private
 def weekend_params
     params
 		.require(:weekend)
-		.permit(:date)
+		.permit(:date, :weekender)
 end
 
 def check_signed_in_user

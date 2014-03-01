@@ -1,7 +1,24 @@
-<div>
-	<%= link_to weekend.date, weekend_path(id:weekend.id), :class => "btn-lg btn-primary" %>
-	<% if current_duser.is_member %>
-		<%= link_to 'Edit', edit_weekend_path(id:weekend.id), :class => "btn btn-xs" %>
-		| <%= link_to 'Delete', weekend, :method=>:delete, :data=>{:confirm=>'Are you sure?'}, :class => "btn btn-xs" %>
-	<% end %>
+<div class="col-xs-4 col-md-2" style="padding-bottom:20px">
+
+		<%= link_to(weekend_path(id:weekend.id), rel: weekend.date.to_s, relative: true) do %>
+			<%= image_tag(weekend.weekender.url(:thumb), alt: weekend.date.to_s, class: "img-thumbnail") %>
+		<% end %>
+	
+		<% if current_duser.is_member %>
+		<div class="btn-group-vertical">
+			<%= link_to(edit_weekend_path(id:weekend.id), :class => "btn btn-xs btn-default") do %>
+				<span class="glyphicon glyphicon-edit"></span>
+			<% end %>
+			<%= link_to(weekend, :method=>:delete, :data=>{:confirm=>'Are you sure?'}, :class => "btn btn-xs btn-default") do %>
+				<span class="glyphicon glyphicon-remove-circle"></span>
+			<% end %>
+		</div>
+		<% end %>
+		
+		<br />
+		
+		<%= link_to(weekend_path(id:weekend.id), rel: weekend.date.to_s, relative: true) do %>
+		<%= weekend.date.to_s %>
+		<% end %>
+
 </div>

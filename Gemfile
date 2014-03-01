@@ -11,6 +11,7 @@ gem "bootstrap-sass", "3.1.1.0"
 gem 'turbolinks'
 
 gem 'devise'
+gem 'paperclip', "~> 4.1"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -1,6 +1,12 @@
 <% provide :title, @weekend.date.to_s %>
 
-<div style="padding-top:10px"><%= link_to '« All Weekends', root_path %></div>
+<div style="padding-top:10px">
+<ol class="breadcrumb">
+<li><%= link_to 'All Weekends', root_path %></li>
+<li class="active"><%= @weekend.date.to_s %>
+</ol>
+</div>
+
 <h1>Weekend of <%= @weekend.date %></h1>
 
 <div>

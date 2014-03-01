@@ -1,8 +1,14 @@
-<div>
-	<li><%= Duser.find(comment.duser_id).first_name %>: <%= comment.content %> 
-		<% if current_duser.is_member || comment.duser_id == current_duser.id %> 
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<%= Duser.find(comment.duser_id).first_name %> <%= Duser.find(comment.duser_id).last_name %> @ <%= comment.created_at.to_s %>
+		<% if current_duser.is_member || comment.duser_id == current_duser.id %>
+			<div class="pull-right">
 			<%= link_to 'Edit', edit_weekend_event_comment_path(id: comment.id, event_id:params[:id]), :class => "btn" %>
-		  | <%= link_to 'Delete', weekend_event_comment_path(id: comment.id, event_id:params[:id]), :method => :delete, :data=>{:confirm=>'Are you sure?'}, :class => "btn" %>
+			<%= link_to 'Delete', weekend_event_comment_path(id: comment.id, event_id:params[:id]), :method => :delete, :data=>{:confirm=>'Are you sure?'}, :class => "btn" %>
+			</div>
 		<% end %>
-	</li>
+	</div>
+	<div class="panel-body">
+		<%= comment.content %> 
+	</div>
 </div>
