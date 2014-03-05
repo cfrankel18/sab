@@ -23,7 +23,7 @@
 <% end %>
 
 <div class="well well-sm">
-<% rating = @event.ratings.collect(&:value).sum.to_f/@event.ratings.length if @event.ratings.length > 0 %>
+<% rating = (@event.ratings.collect(&:value).sum.to_f/@event.ratings.length).round(2) if @event.ratings.length > 0 %>
 <h5>Rated <%= pluralize(rating, 'star') %></h5>
 <%= link_to 'Rate this event', new_weekend_event_rating_path(event_id:@event.id), :class => "btn btn-info"%>
 </div>
