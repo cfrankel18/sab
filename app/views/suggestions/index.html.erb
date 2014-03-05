@@ -1,9 +1,16 @@
 <% provide :title, 'Suggested Events' %>
 
-<h1>Latest Suggestions</h1>
+<h1 style="text-align:center">Latest Suggestions</h1>
 
+<%= link_to(new_suggestion_path, :class => "btn btn-success pull-right") do %>
+		<span class="glyphicon glyphicon-plus"></span> New Suggestion
+<% end %>
+<br />
+
+<div class="jumbotron">
+<div class="row">
+<ul class="list-group">
 <%= render @suggestions %>
-
-<br>
-
-<%= link_to 'New Suggestion', new_suggestion_path, :class => "btn btn-primary" %>
+</ul>
+</div>
+</div>

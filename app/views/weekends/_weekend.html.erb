@@ -1,5 +1,5 @@
 <div class="col-xs-4 col-md-2" style="padding-bottom:20px">
-
+	<div class="center-block">
 		<%= link_to(weekend_path(id:weekend.id), rel: weekend.date.to_s, relative: true) do %>
 			<%= image_tag(weekend.weekender.url(:thumb), alt: weekend.date.to_s, class: "img-thumbnail") %>
 		<% end %>
@@ -18,7 +18,7 @@
 		<br />
 		
 		<%= link_to(weekend_path(id:weekend.id), rel: weekend.date.to_s, relative: true) do %>
-		<%= weekend.date.to_s %>
+		<%= weekend.date.strftime("%B %-d, %Y") %>
 		<% end %>
-
+	</div>
 </div>

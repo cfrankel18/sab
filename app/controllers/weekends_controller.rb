@@ -10,7 +10,9 @@ end
 
 def show
 	@weekend = Weekend.find(params[:id])
-	@events = @weekend.events
+	@friday_events = @weekend.events.select { |event| event.day == "Friday"}
+	@saturday_events = @weekend.events.select { |event| event.day == "Saturday"}
+	@sunday_events = @weekend.events.select { |event| event.day == "Sunday"}
 end
 
 def new

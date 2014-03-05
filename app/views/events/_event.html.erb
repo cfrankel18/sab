@@ -1,7 +1,12 @@
-<div>
-	<%= link_to event.title, weekend_event_path(id:event.id, weekend_id:params[:id]), :class => "btn btn-sm btn-primary"%> 
-	<% if current_duser.is_member %>
-	<%= link_to 'Edit', edit_weekend_event_path(id:event.id, weekend_id:params[:id]), :class => "btn"%> 
-	| <%= link_to 'Delete', weekend_event_path(id:event.id, weekend_id:params[:id]), :method => :delete, :data=>{:confirm=>"Are you sure?"}, :class => "btn" %>
+<li class="list-group-item">
+	<%= link_to(weekend_event_path(id:event.id, weekend_id:params[:id])) do %>
+		<h3 class="list-group-item-heading"><%= event.title %></h3>
 	<% end %>
-</div>
+	<% if current_duser.is_member %>
+	<div class="pull-right">
+		<%= link_to 'Edit', edit_weekend_event_path(id:event.id, weekend_id:params[:id]), :class => "btn btn-xs btn-default"%> 
+		<%= link_to 'Delete', weekend_event_path(id:event.id, weekend_id:params[:id]), :method => :delete, :data=>{:confirm=>"Are you sure?"}, :class => "btn btn-xs btn-default" %>
+	</div>
+	<% end %>
+	<p class="list-group-item-text">(<%= event.time %>) <%= event.description %></p>
+</li>

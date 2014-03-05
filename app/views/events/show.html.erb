@@ -1,7 +1,7 @@
 <% provide :title, @event.title %>
 
 <div style="padding-top:10px">
-<% wn = Weekend.find(@event.weekend_id).date.to_s %>
+<% wn = Weekend.find(@event.weekend_id).date.strftime("%B %-d, %Y") %>
 <ol class="breadcrumb">
 <li><%= link_to 'All Weekends', root_path %></li>
 <li><%= link_to wn, weekend_path(@event.weekend_id) %></li>
@@ -39,9 +39,12 @@
 </div>
 
 <div class="well">
-<h5>Comments:</h5>
-
+<h5>Comments: <%= link_to(new_weekend_event_comment_path(event_id:@event.id), :class => "btn btn-info pull-right") do %>
+	<span class="glyphicon glyphicon-plus"></span> New Comment
+	<% end %>
+	</h5>
+<br />
 <%= render @event.comments %>
-<%= link_to 'New Comment', new_weekend_event_comment_path(event_id:@event.id), :class => "btn btn-default"%>
+
 </div>
 </div>

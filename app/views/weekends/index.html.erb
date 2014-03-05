@@ -3,9 +3,10 @@
 <h1 style="text-align:center">Weekender Online</h1>
 
 <% if current_duser.is_member %>
-	<%= link_to(new_weekend_path, :class => "btn btn-success", :style => "margin-left:5%") do %>
+	<%= link_to(new_weekend_path, :class => "btn btn-success pull-right") do %>
 		<span class="glyphicon glyphicon-plus"></span> New Weekend
 	<% end %>
+	<br />
 <% end %>
 
 <div class="jumbotron">

@@ -1,8 +1,10 @@
-<div>
-	<%= suggestion.title %>: 
-	<%= link_to 'Show', suggestion_path(id:suggestion.id), :class => "btn btn-success"%> 
+<li class="list-group-item">
+	<h5 class="list-group-item-heading"><%= link_to suggestion.title, suggestion_path(id:suggestion.id) %> (<%= Duser.find(suggestion.duser_id).first_name %> <%= Duser.find(suggestion.duser_id).last_name %>)</h5>
 	<% if current_duser.is_member %> 
-	| <%= link_to 'Edit', edit_suggestion_path(id:suggestion.id), :class => "btn"%>
-	| <%= link_to 'Delete', suggestion, :method=>:delete, :data=>{:confirm=>'Are you sure?'}, :class => "btn" %>
+	<div class="pull-right">
+	<%= link_to 'Edit', edit_suggestion_path(id:suggestion.id), :class => "btn btn-xs btn-default"%>
+	<%= link_to 'Delete', suggestion, :method=>:delete, :data=>{:confirm=>'Are you sure?'}, :class => "btn btn-xs btn-default" %>
+	</div>
 	<% end %>
-</div>
+	<p class="list-group-item-text"><%= suggestion.content %></p>
+</li>

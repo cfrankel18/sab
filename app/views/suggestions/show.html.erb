@@ -1,5 +1,12 @@
 <% provide :title, @suggestion.title %>
 
+<div style="padding-top:10px">
+<ol class="breadcrumb">
+<li><%= link_to 'All Suggestions', suggestions_path %></li>
+<li class="active"><%= @suggestion.title %>
+</ol>
+</div>
+
 <h1><%= @suggestion.title %></h1>
 <h6>Suggested by: <%= Duser.find(@suggestion.duser_id).first_name %> <%= Duser.find(@suggestion.duser_id).last_name %></h6>
 <p><%= @suggestion.content %></p>

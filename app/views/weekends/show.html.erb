@@ -1,20 +1,38 @@
-<% provide :title, @weekend.date.to_s %>
+<% provide :title, @weekend.date.strftime("%B %-d, %Y") %>
 
 <div style="padding-top:10px">
 <ol class="breadcrumb">
 <li><%= link_to 'All Weekends', root_path %></li>
-<li class="active"><%= @weekend.date.to_s %>
+<li class="active"><%= @weekend.date.strftime("%B %-d, %Y") %>
 </ol>
 </div>
 
-<h1>Weekend of <%= @weekend.date %></h1>
-
-<div>
-<%= render @events %>
-</div>
-
-<br />
+<h1 style="text-align:center">Weekend of <%= @weekend.date.strftime("%B %-d, %Y") %></h1>
 
 <% if current_duser.is_member %>
-<%= link_to 'New Event', new_weekend_event_path(params[:id]), :class => "btn"%>
+<%= link_to(new_weekend_event_path(weekend_id: @weekend.id), :class => "btn btn-success pull-right") do %>
+		<span class="glyphicon glyphicon-plus"></span> New Event
+	<% end %>
+	<br />
+<% end %>
+
+<% if !@friday_events.empty? %>
+<h5>Friday</h5>
+<ul class="list-group">
+<%= render @friday_events %>
+</ul>
+<% end %>
+
+<% if !@saturday_events.empty? %>
+<h5>Saturday</h5>
+<ul class="list-group">
+<%= render @saturday_events %>
+</ul>
+<% end %>
+
+<% if !@sunday_events.empty? %>
+<h5>Sunday</h5>
+<ul class="list-group">
+<%= render @sunday_events %>
+</ul>
 <% end %>
